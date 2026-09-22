@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Eksistensialisme dalam Pembelajaran PAI | STAI Darussalam Lampung</title>
+<style>
+:root{
+  --green:#073f35; --green2:#0b5c4c; --green3:#12846c; --gold:#d8b25a; --cream:#fff9ec;
+  --ink:#13231f; --muted:#60716c; --white:#fff; --soft:#e8f3ef; --shadow:0 24px 70px rgba(0,0,0,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:#061f1b;color:var(--ink);font-family:"Segoe UI",Inter,Arial,sans-serif}
+button{font:inherit}
+#app{height:100%;position:relative}
+.progress{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--gold),#ffe8a9);z-index:100;transition:width .45s ease}
+.topbar{position:fixed;top:14px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;z-index:90;pointer-events:none}
+.brand,.counter{pointer-events:auto;background:rgba(4,39,33,.70);backdrop-filter:blur(12px);color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:9px 14px;font-size:12px;letter-spacing:.2px}
+.brand b{color:#ffe7a6}.counter{font-variant-numeric:tabular-nums}
+.stage{height:100%;position:relative}
+.slide{position:absolute;inset:0;opacity:0;transform:translateX(5%) scale(.985);pointer-events:none;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.75,.2,1);background:var(--cream);overflow:auto}
+.slide.active{opacity:1;transform:none;pointer-events:auto;z-index:5}
+.slide.leave-left{transform:translateX(-5%) scale(.985)}
+.slide .inner{min-height:100%;padding:72px 7vw 80px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.slide.dark{background:radial-gradient(circle at 82% 18%,#177561 0%,#0a493d 35%,#052d26 100%);color:#fff}
+.slide.dark:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.04),transparent 40%);pointer-events:none}
+.kicker{display:inline-flex;align-items:center;gap:8px;width:max-content;padding:7px 12px;border-radius:999px;background:var(--soft);color:var(--green2);font-size:12px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;margin-bottom:15px}
+.dark .kicker{background:rgba(255,255,255,.12);color:#ffe6a2}
+h1{font-size:clamp(36px,5.8vw,82px);line-height:.98;margin:0 0 18px;letter-spacing:-2.5px;max-width:1100px}
+h2{font-size:clamp(30px,4vw,58px);line-height:1.05;margin:0 0 18px;letter-spacing:-1.6px;color:var(--green)}
+.dark h2{color:#fff}
+h3{font-size:clamp(19px,2vw,28px);margin:0 0 10px;color:var(--green)}
+.dark h3{color:#ffe6a2}
+p{font-size:clamp(16px,1.45vw,22px);line-height:1.55;margin:8px 0;color:#334640}
+.dark p{color:#e9f4f0}
+.lead{font-size:clamp(19px,2vw,30px);max-width:960px}
+.gold{color:#ffe6a2}.em{color:var(--green2);font-weight:800}.dark .em{color:#ffe6a2}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:#fff;border:1px solid #e3ece8;border-radius:22px;padding:22px;box-shadow:0 12px 35px rgba(7,63,53,.08)}
+.dark .card{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.14);box-shadow:none}
+.card .num{font-size:12px;font-weight:900;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+.icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#e6f4ef,#fff);font-size:28px;margin-bottom:14px;border:1px solid #d7ebe4}
+.dark .icon{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15)}
+.quote{font-size:clamp(24px,3vw,44px);font-weight:800;line-height:1.17;padding-left:22px;border-left:5px solid var(--gold);margin:18px 0;color:var(--green)}
+.dark .quote{color:#fff}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.pill{padding:9px 13px;border-radius:999px;background:#fff;border:1px solid #dce9e4;color:var(--green);font-weight:700}.dark .pill{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:#fff}
+.orbit{width:min(450px,75vw);aspect-ratio:1;border-radius:50%;margin:auto;position:relative;background:radial-gradient(circle,#fff 0 25%,#e9f5f0 26% 43%,#d4ede4 44% 61%,#b9ded1 62%);box-shadow:var(--shadow)}
+.orbit .center{position:absolute;inset:34%;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--green);color:#fff;font-weight:900;font-size:20px;padding:10px}
+.orbit .o{position:absolute;width:110px;height:110px;border-radius:50%;display:grid;place-items:center;text-align:center;background:#fff;border:2px solid #d6eae3;font-weight:800;color:var(--green);padding:10px;box-shadow:0 10px 24px rgba(7,63,53,.12)}
+.orbit .o1{left:50%;top:2%;transform:translateX(-50%)}.orbit .o2{right:0;top:50%;transform:translateY(-50%)}.orbit .o3{left:50%;bottom:2%;transform:translateX(-50%)}.orbit .o4{left:0;top:50%;transform:translateY(-50%)}
+.timeline{display:flex;align-items:stretch;gap:0;margin-top:26px;overflow:auto;padding:8px 4px 14px}.titem{min-width:155px;flex:1;position:relative;padding:18px 14px 15px;border-top:4px solid #c7ded6;background:#fff}.titem:before{content:"";width:14px;height:14px;background:var(--gold);border:4px solid #fff;box-shadow:0 0 0 2px var(--gold);border-radius:50%;position:absolute;top:-10px;left:18px}.titem strong{display:block;color:var(--green);margin-bottom:6px}.titem small{color:#687b75;line-height:1.35;display:block}
+.dark .titem{background:rgba(255,255,255,.09);border-top-color:rgba(255,255,255,.25)}.dark .titem strong{color:#ffe6a2}.dark .titem small{color:#e5f0ec}.dark .titem:before{border-color:#0a493d}
+.portrait{height:420px;border-radius:30px;position:relative;overflow:hidden;background:linear-gradient(150deg,#0b5d4d,#062f28);box-shadow:var(--shadow);display:grid;place-items:center}
+.portrait:before{content:"";width:230px;height:300px;border-radius:48% 48% 38% 38%;background:linear-gradient(#e8d5bc,#b99672);position:absolute;top:72px;filter:saturate(.55)}
+.portrait:after{content:"";width:330px;height:190px;border-radius:50% 50% 0 0;background:#213b35;position:absolute;bottom:-45px}
+.portrait .hair{position:absolute;top:50px;width:240px;height:145px;border-radius:50% 50% 42% 42%;background:#473b31;z-index:2}.portrait .name{position:absolute;bottom:18px;z-index:3;color:#fff;font-weight:900;font-size:24px;text-align:center}.portrait .years{font-size:13px;opacity:.8;display:block;margin-top:4px}
+.flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:22px}.flow .step{background:#fff;border:1px solid #dfeae6;border-radius:18px;padding:14px 17px;font-weight:850;color:var(--green);box-shadow:0 8px 20px rgba(7,63,53,.07)}.flow .arr{font-size:26px;color:var(--gold);font-weight:900}.dark .flow .step{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.16);color:#fff}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.side{border-radius:28px;padding:25px;background:#fff;border:1px solid #dceae4}.side.green{background:linear-gradient(145deg,#0a4f42,#073b32);color:#fff;border:0}.side.green p,.side.green h3{color:#fff}.side .tag{font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold)}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px;margin-top:15px;font-size:clamp(14px,1.25vw,18px)}.table th{text-align:left;color:var(--green);padding:10px 14px}.table td{background:#fff;padding:13px 14px;border-top:1px solid #e4edea;border-bottom:1px solid #e4edea}.table td:first-child{border-left:1px solid #e4edea;border-radius:14px 0 0 14px;font-weight:800;color:var(--green)}.table td:last-child{border-right:1px solid #e4edea;border-radius:0 14px 14px 0}.table .arrow{text-align:center;color:var(--gold);font-weight:900}
+.case{background:linear-gradient(145deg,#fff,#eef8f4);border:1px solid #dbeae4;border-radius:30px;padding:28px;box-shadow:var(--shadow)}.case .question{font-size:clamp(24px,3vw,42px);font-weight:900;color:var(--green);line-height:1.15}.choice{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.choice div{border-radius:18px;padding:16px;background:#fff;border:1px solid #dcebe5;font-weight:750;min-height:100px}.choice b{display:block;color:var(--gold);font-size:14px;margin-bottom:8px}
+.bigwords{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.bigwords span{font-size:clamp(20px,2.4vw,36px);font-weight:900;padding:14px 18px;border-radius:18px;background:#fff;border:1px solid #dbe9e4;color:var(--green)}.dark .bigwords span{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:#fff}
+.callout{padding:18px 20px;border-radius:18px;background:#fff4d6;border:1px solid #f1d889;color:#624b13;font-weight:750;margin-top:16px}
+.controls{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(3,31,27,.78);backdrop-filter:blur(14px);padding:8px;border:1px solid rgba(255,255,255,.13);border-radius:999px;z-index:99;box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.controls button{width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:18px;transition:.2s}.controls button:hover{background:var(--gold);color:#26331f;transform:translateY(-2px)}
+.controls .wide{width:auto;padding:0 14px;border-radius:999px;font-size:12px;font-weight:800}
+.notes{position:fixed;right:18px;top:65px;width:min(390px,calc(100vw - 36px));max-height:calc(100vh - 145px);overflow:auto;background:#fffdf8;border:1px solid #e9dfc8;border-radius:24px;padding:20px;z-index:110;box-shadow:var(--shadow);transform:translateX(calc(100% + 35px));transition:.35s ease}.notes.open{transform:none}.notes h4{margin:0 0 10px;color:var(--green);font-size:18px}.notes p{font-size:15px;line-height:1.55;color:#40534d}.notes .hint{font-size:12px;color:#7d8c87;border-top:1px solid #eee3cc;padding-top:12px;margin-top:14px}
+.overview{position:fixed;inset:0;background:rgba(2,21,18,.94);z-index:130;display:none;overflow:auto;padding:55px 5vw}.overview.open{display:block}.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.thumb{background:#fff;border-radius:18px;padding:16px;min-height:145px;cursor:pointer;border:2px solid transparent}.thumb:hover{border-color:var(--gold);transform:translateY(-2px)}.thumb b{color:var(--green);display:block;margin-bottom:8px}.thumb p{font-size:13px;line-height:1.35;color:#63736e}.close-overview{position:fixed;right:22px;top:18px;border:0;background:var(--gold);color:#24372f;border-radius:999px;padding:10px 15px;font-weight:900;cursor:pointer}
+.footer-note{position:absolute;bottom:22px;left:7vw;font-size:11px;color:#82918c}.dark .footer-note{color:rgba(255,255,255,.55)}
+.reveal{opacity:0;transform:translateY(12px);animation:rise .6s ease forwards}.active .r1{animation-delay:.08s}.active .r2{animation-delay:.18s}.active .r3{animation-delay:.30s}.active .r4{animation-delay:.42s}.active .r5{animation-delay:.54s}@keyframes rise{to{opacity:1;transform:none}}
+@media (max-width:900px){.grid2,.grid3,.grid4,.split,.choice{grid-template-columns:1fr}.slide .inner{justify-content:flex-start;padding-top:95px}.portrait{height:300px}.orbit{width:330px}.topbar .brand{max-width:60vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.controls{bottom:10px}.card{padding:18px}}
+@media print{body{overflow:visible}.slide{position:relative;opacity:1!important;transform:none!important;page-break-after:always;height:100vh}.controls,.topbar,.progress,.notes,.overview{display:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="progress" id="progress"></div>
+  <div class="topbar">
+    <div class="brand">STAI Darussalam Lampung • <b>Filsafat Pendidikan Islam</b></div>
+    <div class="counter"><span id="current">1</span> / <span id="total">18</span></div>
+  </div>
+  <main class="stage" id="stage">
+
+    <section class="slide dark active" data-title="Cover" data-notes="Buka dengan kalimat sederhana: 'Hari ini kita tidak mulai dari definisi yang rumit. Kita mulai dari manusia: siapa dirinya, bagaimana ia memilih, dan untuk apa ia hidup.' Setelah itu sebutkan judul dan nama penyaji.">
+      <div class="inner">
+        <div class="kicker reveal r1">Presentasi Filsafat Pendidikan Islam</div>
+        <h1 class="reveal r2">Eksistensialisme<br><span class="gold">dalam Pembelajaran</span><br>Pendidikan Agama Islam</h1>
+        <p class="lead reveal r3">Dari <b>kesadaran diri</b> → <b>pilihan</b> → <b>makna</b> → <b>tanggung jawab spiritual</b>.</p>
+        <div class="pills reveal r4">
+          <span class="pill">Syaiful Islam</span><span class="pill">David Abraham</span><span class="pill">Dosen: Dr. M. Gus Nur Wahid, M.Pd.I.</span>
+        </div>
+        <div class="footer-note">Gunakan ← → untuk berpindah slide • tekan N untuk catatan presenter</div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Pertanyaan Pemantik" data-notes="Jangan langsung menjelaskan teori. Tanyakan tiga pertanyaan di layar kepada audiens. Beri jeda 2–3 detik. Lalu katakan: 'Pertanyaan seperti inilah yang menjadi pintu masuk eksistensialisme.'">
+      <div class="inner">
+        <div class="kicker reveal r1">Mulai dari pengalaman manusia</div>
+        <h2 class="reveal r2">Sebelum bicara filsafat…</h2>
+        <div class="grid3 reveal r3">
+          <div class="card"><div class="icon">🪞</div><h3>Siapakah saya?</h3><p>Bagaimana seseorang mengenali dirinya, bukan hanya label atau perannya?</p></div>
+          <div class="card"><div class="icon">🛤️</div><h3>Mengapa saya hidup?</h3><p>Apa arti pilihan, kegagalan, keberhasilan, dan tujuan hidup?</p></div>
+          <div class="card"><div class="icon">🧭</div><h3>Arah hidup saya?</h3><p>Siapa yang menentukan keputusan dan siapa yang bertanggung jawab?</p></div>
+        </div>
+        <div class="callout reveal r4">Eksistensialisme lahir dari kegelisahan: manusia tidak cukup hanya <b>dijelaskan</b>—manusia ingin <b>memahami keberadaannya sendiri</b>.</div>
+      </div>
+    </section>
+
+    <section class="slide dark" data-title="Peta Perjalanan" data-notes="Slide ini berfungsi sebagai peta agar teman Anda tidak tersesat. Jelaskan bahwa presentasi berjalan dalam tiga tahap: akar gagasan, masuk ke pendidikan, lalu dipertemukan dengan PAI.">
+      <div class="inner">
+        <div class="kicker reveal r1">Peta presentasi</div>
+        <h2 class="reveal r2">Kita akan berjalan melalui 3 pintu</h2>
+        <div class="grid3 reveal r3">
+          <div class="card"><div class="num">Pintu 01</div><h3>Dari mana gagasan ini muncul?</h3><p>Socrates → humanisme → Kierkegaard → Heidegger → Sartre.</p></div>
+          <div class="card"><div class="num">Pintu 02</div><h3>Apa artinya bagi pendidikan?</h3><p>Peserta didik dipandang sebagai subjek yang sadar, memilih, dan bertanggung jawab.</p></div>
+          <div class="card"><div class="num">Pintu 03</div><h3>Bagaimana bertemu dengan PAI?</h3><p>Kebebasan manusia diarahkan oleh wahyu, akhlak, amanah, dan tanggung jawab kepada Allah.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Pengertian Eksistensialisme" data-notes="Gunakan rumus empat kata: keberadaan, makna, pilihan, tanggung jawab. Tidak perlu menjelaskan definisi filosofis panjang. Kalimat kuncinya: 'Manusia tidak sekadar ada; ia sadar bahwa ia ada dan harus menentukan bagaimana ia hidup.'">
+      <div class="inner">
+        <div class="grid2">
+          <div>
+            <div class="kicker reveal r1">Pengertian sederhana</div>
+            <h2 class="reveal r2">Apa itu Eksistensialisme?</h2>
+            <p class="lead reveal r3">Filsafat yang menempatkan <span class="em">manusia sebagai individu yang sadar</span>, memiliki pilihan, mencari makna, dan bertanggung jawab atas hidupnya.</p>
+            <div class="quote reveal r4">“Manusia tidak hanya ada. Ia menyadari keberadaannya.”</div>
+          </div>
+          <div class="orbit reveal r3">
+            <div class="center">EKSISTENSI<br>MANUSIA</div>
+            <div class="o o1">Kesadaran Diri</div><div class="o o2">Pilihan</div><div class="o o3">Tanggung Jawab</div><div class="o o4">Makna Hidup</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Benang Merah Sejarah" data-notes="Tekankan bahwa ini bukan berarti semua tokoh adalah eksistensialis. Mereka adalah mata rantai gagasan yang membantu lahirnya perhatian pada manusia sebagai subjek. Fokuskan satu kalimat tiap tokoh saja.">
+      <div class="inner">
+        <div class="kicker reveal r1">Benang merah sejarah</div>
+        <h2 class="reveal r2">Dari “apa itu manusia?” menuju “bagaimana manusia hidup?”</h2>
+        <div class="timeline reveal r3">
+          <div class="titem"><strong>Socrates</strong><small>“Kenalilah dirimu.” Kesadaran diri menjadi titik awal.</small></div>
+          <div class="titem"><strong>Humanisme</strong><small>Manusia dipandang memiliki nilai dan potensi individual.</small></div>
+          <div class="titem"><strong>Descartes</strong><small>Manusia tampil sebagai subjek yang berpikir.</small></div>
+          <div class="titem"><strong>Kierkegaard</strong><small>Individu, pilihan pribadi, iman, dan tanggung jawab.</small></div>
+          <div class="titem"><strong>Heidegger</strong><small>Dasein: manusia sadar bahwa dirinya berada di dunia.</small></div>
+          <div class="titem"><strong>Sartre</strong><small>Kebebasan, pilihan, dan pembentukan diri melalui tindakan.</small></div>
+        </div>
+        <div class="callout reveal r4">Bukan “silsilah guru–murid”, tetapi <b>silsilah gagasan</b>: perhatian filsafat makin bergeser kepada pengalaman hidup konkret manusia.</div>
+      </div>
+    </section>
+
+    <section class="slide dark" data-title="Kierkegaard" data-notes="Kierkegaard paling mudah dijembatani dengan PAI karena ia menekankan individu, pilihan, kecemasan, dan relasi personal dengan Tuhan. Hindari masuk terlalu jauh ke istilah teknis. Hubungkan dengan siswa yang harus mengambil keputusan sadar.">
+      <div class="inner">
+        <div class="grid2">
+          <div class="portrait reveal r2"><div class="hair"></div><div class="name">Søren Kierkegaard<span class="years">1813–1855</span></div></div>
+          <div>
+            <div class="kicker reveal r1">Tokoh kunci 01</div>
+            <h2 class="reveal r2">Individu harus memilih</h2>
+            <div class="quote reveal r3">Iman bukan sekadar informasi; iman menyentuh keputusan personal manusia.</div>
+            <div class="bigwords reveal r4"><span>Individu</span><span>Pilihan</span><span>Iman</span><span>Tanggung Jawab</span></div>
+            <p class="reveal r5"><b>Jembatan ke PAI:</b> peserta didik perlu sampai pada kesadaran pribadi—bukan hanya “saya tahu”, tetapi “saya memilih menjalankan nilai itu”.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Nietzsche" data-notes="Jelaskan Nietzsche sebagai tokoh yang menggugat kepatuhan buta dan mendorong pembentukan diri. Dari perspektif Islam, tidak semua gagasannya diterima. Yang diambil untuk pendidikan adalah keberanian berpikir kritis dan tidak sekadar mengikuti arus; nilai akhirnya tetap perlu diarahkan.">
+      <div class="inner">
+        <div class="grid2">
+          <div>
+            <div class="kicker reveal r1">Tokoh kunci 02</div>
+            <h2 class="reveal r2">Jangan hidup hanya karena ikut arus</h2>
+            <p class="lead reveal r3">Nietzsche menggugat manusia yang hanya mengikuti kebiasaan dan tekanan sosial tanpa refleksi.</p>
+            <div class="flow reveal r4"><div class="step">Ikut arus</div><div class="arr">→</div><div class="step">Bertanya</div><div class="arr">→</div><div class="step">Menilai</div><div class="arr">→</div><div class="step">Membentuk diri</div></div>
+            <div class="callout reveal r5"><b>Catatan Islam:</b> keberanian membentuk diri tidak berarti manusia bebas menciptakan kebenaran sesukanya. Dalam PAI, pembentukan diri diarahkan oleh wahyu dan akhlak.</div>
+          </div>
+          <div class="card reveal r3"><div class="icon">🌊</div><h3>Ilustrasi sederhana</h3><p>Seorang siswa menolak menyontek walau seluruh temannya melakukannya. Ia tidak sekadar mengikuti kelompok—ia memilih berdasarkan prinsip yang diyakini.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark" data-title="Heidegger" data-notes="Kata kunci Heidegger: Dasein—manusia yang menyadari dirinya 'ada' di dunia. Untuk audiens, sederhanakan dengan pertanyaan: 'Untuk apa saya belajar?' dan 'Hidup seperti apa yang sedang saya bangun?'">
+      <div class="inner">
+        <div class="kicker reveal r1">Tokoh kunci 03</div>
+        <h2 class="reveal r2">Heidegger: manusia sadar bahwa dirinya “ada”</h2>
+        <div class="split reveal r3">
+          <div class="side green"><div class="tag">Dasein</div><h3>Keberadaan yang sadar</h3><p>Manusia bukan benda. Ia mengalami dunia, waktu, pilihan, kecemasan, dan menyadari keterbatasan hidupnya.</p></div>
+          <div class="side"><div class="tag">Dalam pendidikan</div><h3>Belajar harus bermakna</h3><p>Pertanyaan pendidikan tidak berhenti pada “berapa nilaimu?”, tetapi juga: “apa arti yang kamu temukan dari proses belajar?”</p></div>
+        </div>
+        <div class="quote reveal r4">“Untuk apa saya belajar, dan manusia seperti apa yang sedang saya bangun?”</div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Sartre" data-notes="Sartre menekankan 'eksistensi mendahului esensi'. Terjemahkan: manusia tidak selesai sejak lahir; dirinya dibentuk lewat pilihan dan tindakan. Dalam Islam, bagian kebebasan perlu diberi batas: manusia punya ikhtiar, tetapi hidup tidak terlepas dari tanggung jawab kepada Allah.">
+      <div class="inner">
+        <div class="kicker reveal r1">Tokoh kunci 04</div>
+        <h2 class="reveal r2">Sartre: kita dibentuk oleh pilihan</h2>
+        <p class="lead reveal r3">“Eksistensi mendahului esensi” dapat disederhanakan: manusia <b>menjalani hidup terlebih dahulu</b>, lalu identitasnya terbentuk melalui keputusan dan tindakan.</p>
+        <div class="flow reveal r4"><div class="step">Pilihan</div><div class="arr">→</div><div class="step">Tindakan</div><div class="arr">→</div><div class="step">Kebiasaan</div><div class="arr">→</div><div class="step">Karakter</div></div>
+        <div class="callout reveal r5"><b>Diskusi PAI:</b> apakah kebebasan manusia tanpa batas? Islam mengakui ikhtiar, tetapi mengikatnya dengan nilai, konsekuensi moral, dan pertanggungjawaban.</div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Dua Corak Eksistensialisme" data-notes="Gunakan slide ini untuk menunjukkan bahwa eksistensialisme tidak tunggal. Ada pemikir teistik dan ateistik. Jangan menilai seluruh aliran hanya dari Sartre. Ini penting agar diskusi lebih adil dan mudah dipahami.">
+      <div class="inner">
+        <div class="kicker reveal r1">Eksistensialisme tidak satu warna</div>
+        <h2 class="reveal r2">Dua corak besar</h2>
+        <div class="split reveal r3">
+          <div class="side green"><div class="tag">Teistik / Religius</div><h3>Kierkegaard • Gabriel Marcel • Karl Jaspers</h3><p>Makna hidup berkaitan dengan relasi, iman, transendensi, dan keterbukaan pada Tuhan.</p></div>
+          <div class="side"><div class="tag">Ateistik / Sekuler</div><h3>Nietzsche • Sartre • Camus</h3><p>Manusia menanggung kebebasan dan pencarian makna tanpa menjadikan Tuhan sebagai dasar filosofisnya.</p></div>
+        </div>
+        <p class="reveal r4"><b>Untuk PAI:</b> kita dapat mengambil tema kesadaran, pilihan, makna, dan tanggung jawab—kemudian menilainya melalui kerangka Islam.</p>
+      </div>
+    </section>
+
+    <section class="slide dark" data-title="Masuk ke Pendidikan" data-notes="Ini titik transisi utama. Ucapkan: 'Sekarang kita tinggalkan sejarah tokohnya dan masuk ke kelas.' Lalu jelaskan perubahan fokus dari transfer ilmu menjadi pembentukan manusia yang sadar dan bertanggung jawab.">
+      <div class="inner">
+        <div class="kicker reveal r1">Sekarang masuk ke ruang kelas</div>
+        <h2 class="reveal r2">Apa artinya bagi pendidikan?</h2>
+        <div class="grid4 reveal r3">
+          <div class="card"><div class="icon">👤</div><h3>Unik</h3><p>Setiap peserta didik membawa pengalaman dan pergumulannya sendiri.</p></div>
+          <div class="card"><div class="icon">💭</div><h3>Sadar</h3><p>Belajar harus membantu peserta didik memahami dirinya dan nilai yang dipilih.</p></div>
+          <div class="card"><div class="icon">🛤️</div><h3>Memilih</h3><p>Pendidikan memberi ruang mengambil keputusan, bukan kepatuhan mekanis semata.</p></div>
+          <div class="card"><div class="icon">⚖️</div><h3>Bertanggung jawab</h3><p>Setiap kebebasan selalu membawa konsekuensi.</p></div>
+        </div>
+        <div class="quote reveal r4">Peserta didik bukan “wadah kosong”. Ia adalah subjek yang sedang membentuk dirinya.</div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Jembatan ke PAI" data-notes="Ini slide inti. Sampaikan alur dari eksistensialisme menuju PAI: kesadaran diri → pilihan → makna → pendidikan yang memanusiakan → dalam Islam diarahkan pada kehambaan dan kekhalifahan. Tekankan 'kebebasan terbimbing nilai wahyu'.">
+      <div class="inner">
+        <div class="kicker reveal r1">Jembatan ke Pendidikan Agama Islam</div>
+        <h2 class="reveal r2">Di mana titik temunya?</h2>
+        <div class="flow reveal r3">
+          <div class="step">Kesadaran diri</div><div class="arr">→</div><div class="step">Pilihan</div><div class="arr">→</div><div class="step">Makna hidup</div><div class="arr">→</div><div class="step">Tanggung jawab</div><div class="arr">→</div><div class="step">Nilai wahyu</div>
+        </div>
+        <div class="grid2 reveal r4" style="margin-top:26px">
+          <div class="card"><div class="num">Eksistensialisme</div><h3>Manusia membentuk diri melalui pilihan sadar.</h3><p>Fokusnya pada keaslian hidup, makna, dan tanggung jawab individu.</p></div>
+          <div class="card"><div class="num">Pendidikan Islam</div><h3>Manusia membentuk diri melalui pilihan sadar yang diarahkan wahyu.</h3><p>Kesadaran diri terhubung dengan posisi manusia sebagai hamba Allah dan khalifah.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Titik Temu Konsep" data-notes="Jangan baca tabel semuanya. Pilih dua atau tiga baris: kebebasan ↔ ikhtiar, tanggung jawab ↔ amanah, pencarian makna ↔ tujuan penciptaan. Lalu simpulkan bahwa istilahnya berbeda, tetapi ada ruang dialog konsep.">
+      <div class="inner">
+        <div class="kicker reveal r1">Bandingkan dengan sederhana</div>
+        <h2 class="reveal r2">Titik temu konsep</h2>
+        <table class="table reveal r3">
+          <thead><tr><th>Eksistensialisme</th><th></th><th>Pendidikan Islam</th></tr></thead>
+          <tbody>
+            <tr><td>Kesadaran diri</td><td class="arrow">↔</td><td>Mengenal diri sebagai hamba Allah</td></tr>
+            <tr><td>Kebebasan memilih</td><td class="arrow">↔</td><td>Ikhtiar</td></tr>
+            <tr><td>Tanggung jawab</td><td class="arrow">↔</td><td>Amanah dan pertanggungjawaban</td></tr>
+            <tr><td>Pencarian makna</td><td class="arrow">↔</td><td>Tujuan penciptaan dan orientasi hidup</td></tr>
+            <tr><td>Pembentukan diri</td><td class="arrow">↔</td><td>Pembentukan akhlakul karimah</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="slide dark" data-title="Peran Guru PAI" data-notes="Ucapkan: 'Guru PAI tidak kehilangan otoritas nilai, tetapi cara mendidiknya lebih dialogis.' Jelaskan empat peran: pembimbing, fasilitator, teladan, dan pemberi ruang refleksi.">
+      <div class="inner">
+        <div class="kicker reveal r1">Implikasi bagi guru</div>
+        <h2 class="reveal r2">Guru PAI: dari “memberi jawaban” menjadi “membimbing kesadaran”</h2>
+        <div class="grid4 reveal r3">
+          <div class="card"><div class="icon">🧭</div><h3>Pembimbing</h3><p>Membantu siswa memahami konsekuensi pilihan.</p></div>
+          <div class="card"><div class="icon">💬</div><h3>Fasilitator dialog</h3><p>Menghidupkan pertanyaan, bukan mematikan pertanyaan.</p></div>
+          <div class="card"><div class="icon">🌱</div><h3>Teladan</h3><p>Nilai agama terlihat dalam sikap, bukan hanya definisi.</p></div>
+          <div class="card"><div class="icon">🪞</div><h3>Reflektor</h3><p>Membantu siswa mengaitkan materi dengan hidupnya.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Studi Kasus" data-notes="Ini slide interaktif. Bacakan kasus lalu tanyakan pilihan audiens. Setelah ada jawaban, jangan buru-buru mengatakan benar/salah. Tanyakan: 'Mengapa memilih itu?' Baru kaitkan dengan kejujuran, kesadaran, kebebasan, dan tanggung jawab dalam Islam.">
+      <div class="inner">
+        <div class="kicker reveal r1">Contoh di kelas PAI</div>
+        <h2 class="reveal r2">Studi kasus: “semua teman menyontek”</h2>
+        <div class="case reveal r3">
+          <div class="question">Saat ujian, hampir semua teman menyontek. Kamu bisa ikut dan guru tidak akan tahu. Apa yang kamu pilih?</div>
+          <div class="choice">
+            <div><b>PILIHAN A</b>Ikut menyontek karena semua orang melakukannya.</div>
+            <div><b>PILIHAN B</b>Tidak menyontek, tetapi diam dan tidak memikirkan alasannya.</div>
+            <div><b>PILIHAN C</b>Tidak menyontek karena sadar kejujuran adalah nilai yang dipertanggungjawabkan kepada Allah.</div>
+          </div>
+        </div>
+        <div class="callout reveal r4">Pendekatan eksistensial tidak berhenti pada “jawaban benar”. Ia bertanya: <b>apa alasan pilihanmu dan nilai apa yang kamu hidupi?</b></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Model Pembelajaran" data-notes="Berikan model praktis lima langkah. Ini membuat topik filsafat terasa aplikatif. Contohkan satu materi lain seperti ghibah, moderasi, atau etos kerja menggunakan alur Sadari–Pilih–Maknai–Amalkan–Refleksi.">
+      <div class="inner">
+        <div class="kicker reveal r1">Model praktis untuk PAI</div>
+        <h2 class="reveal r2">SADAR → PILIH → MAKNAI → AMALKAN → REFLEKSI</h2>
+        <div class="grid4 reveal r3">
+          <div class="card"><div class="num">01</div><h3>Sadari</h3><p>Berangkat dari pengalaman nyata atau dilema kehidupan.</p></div>
+          <div class="card"><div class="num">02</div><h3>Pilih</h3><p>Siswa menentukan sikap dan menjelaskan alasannya.</p></div>
+          <div class="card"><div class="num">03</div><h3>Maknai</h3><p>Hubungkan pilihan dengan dalil, akhlak, dan tujuan hidup.</p></div>
+          <div class="card"><div class="num">04–05</div><h3>Amalkan & refleksi</h3><p>Uji dalam tindakan, lalu evaluasi: apa yang berubah pada diri?</p></div>
+        </div>
+        <p class="reveal r4"><b>Contoh materi:</b> kejujuran, ghibah, etos kerja, moderasi beragama, tanggung jawab sosial.</p>
+      </div>
+    </section>
+
+    <section class="slide dark" data-title="Batas dan Kritik" data-notes="Ini penting agar presentasi tidak terkesan menerima eksistensialisme mentah-mentah. Jelaskan bahwa Islam menghargai ikhtiar dan tanggung jawab, tetapi kebebasan bukan nilai tertinggi yang berdiri sendiri; ada wahyu, fitrah, tujuan penciptaan, dan dimensi ukhrawi.">
+      <div class="inner">
+        <div class="kicker reveal r1">Kritik dari perspektif Islam</div>
+        <h2 class="reveal r2">Apa yang tidak bisa diambil begitu saja?</h2>
+        <div class="grid3 reveal r3">
+          <div class="card"><div class="icon">🚧</div><h3>Kebebasan bukan tanpa batas</h3><p>Ikhtiar manusia berada dalam tanggung jawab moral dan ketentuan Allah.</p></div>
+          <div class="card"><div class="icon">📖</div><h3>Makna tidak dibuat sesuka hati</h3><p>Islam memiliki orientasi wahyu, fitrah, dan tujuan penciptaan.</p></div>
+          <div class="card"><div class="icon">🌌</div><h3>Hidup tidak berhenti di dunia</h3><p>Tanggung jawab manusia memiliki dimensi ukhrawi.</p></div>
+        </div>
+        <div class="quote reveal r4">Kebebasan dalam Islam adalah kebebasan yang bertanggung jawab—bukan kebebasan yang lepas dari nilai.</div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Kesimpulan" data-notes="Tutup dengan satu kalimat besar. Jangan merangkum semua tokoh lagi. Hubungkan langsung ke judul: pembelajaran PAI harus membuat siswa bukan hanya tahu agama, tetapi sadar, memilih, memaknai, dan bertanggung jawab menjalankan nilai agama.">
+      <div class="inner">
+        <div class="kicker reveal r1">Satu kalimat untuk dibawa pulang</div>
+        <h2 class="reveal r2">PAI bukan hanya membuat siswa <i>tahu</i> agama.</h2>
+        <div class="quote reveal r3">PAI membantu peserta didik <b>menyadari dirinya</b>, <b>memilih nilai yang benar</b>, <b>menemukan makna</b>, dan <b>bertanggung jawab kepada Allah</b>.</div>
+        <div class="bigwords reveal r4"><span>Sadar</span><span>Memilih</span><span>Bermakna</span><span>Bertanggung Jawab</span></div>
+        <p class="lead reveal r5" style="margin-top:24px"><b>Benang merahnya:</b> eksistensialisme menyoroti manusia yang memilih; Pendidikan Islam memberi <span class="em">arah nilai</span> bagi pilihan itu.</p>
+      </div>
+    </section>
+
+    <section class="slide dark" data-title="Diskusi" data-notes="Akhiri dengan pertanyaan diskusi, bukan hanya 'ada pertanyaan?'. Pilih satu dari tiga pertanyaan. Ini membantu teman Anda memimpin diskusi dengan lebih percaya diri.">
+      <div class="inner">
+        <div class="kicker reveal r1">Diskusi</div>
+        <h1 class="reveal r2">Kalau siswa hanya taat karena takut dihukum…<br><span class="gold">apakah ia sudah benar-benar belajar nilai?</span></h1>
+        <div class="grid3 reveal r3">
+          <div class="card"><h3>01</h3><p>Seberapa jauh siswa boleh bebas memilih dalam pembelajaran agama?</p></div>
+          <div class="card"><h3>02</h3><p>Bagaimana membedakan “kebebasan berpikir” dan “kebebasan tanpa nilai”?</p></div>
+          <div class="card"><h3>03</h3><p>Bisakah PAI dinilai berhasil jika siswa hafal materi tetapi nilai itu belum hadir dalam keputusan hidupnya?</p></div>
+        </div>
+        <p class="lead reveal r4" style="margin-top:24px">Terima kasih • Wassalamu’alaikum warahmatullahi wabarakatuh.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="controls">
+    <button title="Sebelumnya" onclick="prevSlide()">←</button>
+    <button class="wide" title="Daftar slide" onclick="toggleOverview()">☷ Slide</button>
+    <button class="wide" title="Catatan presenter (N)" onclick="toggleNotes()">N Catatan</button>
+    <button title="Fullscreen" onclick="toggleFullscreen()">⛶</button>
+    <button title="Berikutnya" onclick="nextSlide()">→</button>
+  </div>
+
+  <aside class="notes" id="notes"><h4>Catatan Presenter</h4><p id="notesText"></p><div class="hint">Tekan <b>N</b> untuk buka/tutup • catatan ini tidak tercetak pada slide.</div></aside>
+  <div class="overview" id="overview"><button class="close-overview" onclick="toggleOverview()">Tutup ×</button><div class="overview-grid" id="overviewGrid"></div></div>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let index=0;
+const current=document.getElementById('current'), total=document.getElementById('total'), progress=document.getElementById('progress');
+const notes=document.getElementById('notes'), notesText=document.getElementById('notesText');
+const overview=document.getElementById('overview'), overviewGrid=document.getElementById('overviewGrid');
+total.textContent=slides.length;
+function showSlide(n){
+  const old=index; index=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>{s.classList.remove('active','leave-left'); if(i<index)s.classList.add('leave-left')});
+  slides[index].classList.add('active');
+  current.textContent=index+1; progress.style.width=((index+1)/slides.length*100)+'%';
+  notesText.textContent=slides[index].dataset.notes||'Tidak ada catatan untuk slide ini.';
+  history.replaceState(null,'','#slide-'+(index+1));
+}
+function nextSlide(){showSlide(index+1)} function prevSlide(){showSlide(index-1)}
+function toggleNotes(){notes.classList.toggle('open')}
+function toggleOverview(){overview.classList.toggle('open')}
+function toggleFullscreen(){ if(!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
+function buildOverview(){
+  overviewGrid.innerHTML=''; slides.forEach((s,i)=>{const d=document.createElement('div');d.className='thumb';d.innerHTML=`<b>${i+1}. ${s.dataset.title||'Slide'}</b><p>${(s.innerText||'').trim().replace(/\s+/g,' ').slice(0,135)}…</p>`;d.onclick=()=>{showSlide(i);toggleOverview()};overviewGrid.appendChild(d)});
+}
+buildOverview();
+const hash=location.hash.match(/slide-(\d+)/); if(hash) index=Math.max(0,Math.min(slides.length-1,+hash[1]-1)); showSlide(index);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();nextSlide()}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide()}
+  else if(e.key.toLowerCase()==='n') toggleNotes();
+  else if(e.key.toLowerCase()==='o') toggleOverview();
+  else if(e.key.toLowerCase()==='f') toggleFullscreen();
+  else if(e.key==='Home') showSlide(0); else if(e.key==='End') showSlide(slides.length-1);
+  else if(e.key==='Escape'){notes.classList.remove('open');overview.classList.remove('open')}
+});
+let sx=0;document.addEventListener('touchstart',e=>sx=e.changedTouches[0].screenX,{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-sx;if(Math.abs(dx)>60){dx<0?nextSlide():prevSlide()}},{passive:true});
+</script>
+</body>
+</html>
